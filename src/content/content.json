@@ -1,0 +1,34 @@
+{
+  "site": {
+    "name": "Ala Eddine Nasri",
+    "role": "Software Engineer — 3D & Web",
+    "location": "Paris, France",
+    "primaryCTA": { "label": "Contact me", "href": "mailto:ia_nasri@esi.dz" },
+    "secondaryCTA": { "label": "Download CV", "href": "/Ala-Eddine-Nasri-CV.pdf" },
+    "theme": { "accent": "indigo", "darkMode": true },
+    "social": [
+      { "id": "github", "label": "GitHub", "href": "https://github.com/Alaeddine-Nasri" },
+      { "id": "linkedin", "label": "LinkedIn", "href": "https://linkedin.com/in/AlaEddine-Nasri" }
+    ]
+  },
+  "highlights": [
+    {
+      "id": "spinal-3d",
+      "title": "3D smart-building UI",
+      "impact": "Live equipment localization & alerts on BIM",
+      "tech": ["Vue", "TypeScript", "Three.js"]
+    },
+    {
+      "id": "boa-budget",
+      "title": "Budget SI (300+ users)",
+      "impact": "Institution-wide KPI dashboards & perf eval",
+      "tech": ["JEE", "JSF", "JasperReports"]
+    },
+    {
+      "id": "manareh",
+      "title": "Deployed to 4 schools",
+      "impact": "Payments, agendas, sync local↔cloud",
+      "tech": ["Electron", "Node.js", "SQLite"]
+    }
+  ]
+}

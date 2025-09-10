@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import { useContent } from "@/composables/useContent";
+
+const { site, highlights } = useContent();
 </script>
 
 <template>
-  <header>
+  <!-- <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
@@ -17,7 +20,31 @@ import HelloWorld from './components/HelloWorld.vue'
     </div>
   </header>
 
-  <RouterView />
+  <RouterView /> -->
+  <main class="p-8">
+    <h1 class="text-3xl font-bold">{{ site.name }}</h1>
+    <h2 class="text-lg text-gray-500">{{ site.role }} • {{ site.location }}</h2>
+
+    <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div
+        v-for="h in highlights"
+        :key="h.id"
+        class="rounded-2xl border p-4 shadow"
+      >
+        <h3 class="text-xl font-semibold">{{ h.title }}</h3>
+        <p class="text-sm text-gray-600">{{ h.impact }}</p>
+        <div class="mt-2 flex flex-wrap gap-2">
+          <span
+            v-for="t in h.tech"
+            :key="t"
+            class="px-2 py-1 bg-indigo-100 rounded-full text-xs"
+          >
+            {{ t }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </main>
 </template>
 
 <style scoped>
