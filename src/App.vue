@@ -1,24 +1,29 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import { useContent } from "@/composables/useContent";
-import Hero from "./components/Hero.vue";
-import Highlights from "./components/Highlights.vue";
-import NavBar from "./components/NavBar.vue";
+import { useContent } from '@/composables/useContent'
+import Hero from './components/Hero.vue'
+import Highlights from './components/Highlights.vue'
+import NavBar from './components/NavBar.vue'
+import SiteFooter from './components/SiteFooter.vue'
 
-const { site, highlights } = useContent();
+const { site, highlights } = useContent()
 </script>
 
 <template>
-  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 bg-neutral-900 text-white px-3 py-2 rounded">
+  <a
+    href="#main"
+    class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 bg-neutral-900 text-white px-3 py-2 rounded"
+  >
     Skip to content
   </a>
-  <NavBar />
-   <div id="main">
-    <RouterView />
+  <div style="min-height: 100vh; width: 100%; display: flex; flex-direction: column">
+    <NavBar />
+    <div id="main">
+      <RouterView />
+    </div>
+    <SiteFooter />
   </div>
-  <SiteFooter />
 </template>
-
 
 <style scoped>
 header {

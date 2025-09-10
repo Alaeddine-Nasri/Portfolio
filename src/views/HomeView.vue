@@ -5,15 +5,19 @@ import Projects from '@/components/Projects.vue'
 import ExperienceTimeline from '@/components/ExperienceTimeline.vue'
 import SkillsMap from '@/components/SkillsMap.vue'
 import EducationAwards from '@/components/EducationAwards.vue'
+import ContactSection from '@/components/ContactSection.vue'
+import SiteFooter from '@/components/SiteFooter.vue'
 </script>
 
 <template>
-  <main class="min-h-screen bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100">
+  <main id="top" class="min-h-screen bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100">
     <Hero />
     <Highlights />
     <Projects />
     <ExperienceTimeline />
     <SkillsMap />
     <EducationAwards />
+    <ContactSection />
+    <SiteFooter />
   </main>
 </template>
