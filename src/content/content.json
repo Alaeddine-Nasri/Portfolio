@@ -1,34 +1,166 @@
 {
+  "schemaVersion": "1.0.0",
   "site": {
     "name": "Ala Eddine Nasri",
     "role": "Software Engineer — 3D & Web",
     "location": "Paris, France",
+    "tagline": "I build data-driven UIs and 3D experiences for buildings and ops.",
     "primaryCTA": { "label": "Contact me", "href": "mailto:ia_nasri@esi.dz" },
     "secondaryCTA": { "label": "Download CV", "href": "/Ala-Eddine-Nasri-CV.pdf" },
-    "theme": { "accent": "indigo", "darkMode": true },
+    "theme": { "accent": "brand", "darkModeDefault": true },
     "social": [
       { "id": "github", "label": "GitHub", "href": "https://github.com/Alaeddine-Nasri" },
       { "id": "linkedin", "label": "LinkedIn", "href": "https://linkedin.com/in/AlaEddine-Nasri" }
     ]
   },
+
   "highlights": [
     {
       "id": "spinal-3d",
       "title": "3D smart-building UI",
       "impact": "Live equipment localization & alerts on BIM",
+      "metrics": ["↓ triage time", "↑ operator visibility"],
       "tech": ["Vue", "TypeScript", "Three.js"]
     },
     {
       "id": "boa-budget",
       "title": "Budget SI (300+ users)",
       "impact": "Institution-wide KPI dashboards & perf eval",
+      "metrics": ["300+ staff", "Centralized KPIs"],
       "tech": ["JEE", "JSF", "JasperReports"]
     },
     {
       "id": "manareh",
       "title": "Deployed to 4 schools",
       "impact": "Payments, agendas, sync local↔cloud",
+      "metrics": ["4 schools live"],
       "tech": ["Electron", "Node.js", "SQLite"]
     }
-  ]
+  ],
+
+  "projects": [
+    {
+      "id": "manareh",
+      "name": "Manareh — School Management",
+      "summary": "Offline-first desktop app with cloud sync for schools.",
+      "problem": "Fragmented tools for fees, schedules, and records.",
+      "role": "Full-stack developer",
+      "outcome": "In production at 4 private schools; reduced admin time.",
+      "tech": ["Electron", "Node.js", "Express", "SQLite"],
+      "media": [{ "type": "image", "src": "/media/manareh-1.png", "alt": "Manareh dashboard" }],
+      "links": [{ "label": "Case study", "href": "/projects/manareh" }]
+    },
+    {
+      "id": "spinal-3d",
+      "name": "Smart Building 3D Supervision",
+      "summary": "Interactive BIM with real-time equipment status & interventions.",
+      "problem": "Hard to locate/act on devices across large buildings.",
+      "role": "Front-end engineer",
+      "outcome": "Faster incident triage; clearer ops visibility.",
+      "tech": ["Vue", "TypeScript", "Three.js"],
+      "media": [{ "type": "video", "src": "/media/spinal-3d.mp4", "alt": "3D supervision demo" }]
+    },
+    {
+      "id": "real-estate",
+      "name": "Real-Estate Platform",
+      "summary": "Responsive search with dynamic filters & i18n.",
+      "role": "Full-stack",
+      "outcome": "Improved discovery and UX for listings.",
+      "tech": ["React", "TypeScript", "Django"]
+    }
+  ],
+
+  "experience": [
+    {
+      "company": "SpinalCom",
+      "title": "Software Engineer — Apprentice",
+      "start": "2024-04",
+      "end": "present",
+      "location": "Paris, France",
+      "bullets": [
+        "Built web apps for supervision, maintenance & real-time control",
+        "3D BIM visualization connected to field data (alerts, interventions)",
+        "Front-end architecture for network, energy, comfort, insights"
+      ],
+      "tech": ["Vue", "TypeScript", "Three.js"]
+    },
+    {
+      "company": "Bank of Algeria",
+      "title": "End-of-study Intern",
+      "start": "2022-09",
+      "end": "2023-07",
+      "location": "Algiers, Algeria",
+      "bullets": [
+        "Institution-wide budgeting SI for 300+ internal users",
+        "KPI dashboards; performance evaluation and iterations"
+      ],
+      "tech": ["JEE", "JSF", "JasperReports", "UML", "Scrum"]
+    },
+    {
+      "company": "Lamacta",
+      "title": "Full-stack Developer (Remote)",
+      "start": "2022-01",
+      "end": "2022-10",
+      "location": "Oran, Algeria",
+      "bullets": [
+        "Responsive UI, dynamic filters, multi-language experience",
+        "API integration and front↔back data flows"
+      ],
+      "tech": ["React", "TypeScript", "Django"]
+    },
+    {
+      "company": "White Cube Conseil",
+      "title": "Full-stack Developer",
+      "start": "2021-04",
+      "end": "2023-08",
+      "location": "Alger, Algeria",
+      "bullets": [
+        "Web platforms for pharma products; improved UX & navigation",
+        "Created a lightweight JS charts/animation helper"
+      ],
+      "tech": ["JavaScript", "Chart.js", "Figma"]
+    }
+  ],
+
+  "skills": {
+    "frontend": ["Vue", "React", "TypeScript", "Three.js"],
+    "backend": ["Node.js", "Express", "Django", "Java/JEE"],
+    "mobile": ["React Native", "Kotlin"],
+    "data": ["SQL", "MongoDB", "Firestore"],
+    "devops": ["GitHub Actions"],
+    "methods": ["Agile/Scrum", "UML"]
+  },
+
+  "education": [
+    {
+      "school": "Université Gustave Eiffel",
+      "program": "Master — Systems & Services for IoT",
+      "year": "2023–2024",
+      "bullets": ["Cloud-native, microservices, distributed systems", "Project leadership, agile planning"]
+    },
+    {
+      "school": "ESI (École Nationale Supérieure d’Informatique)",
+      "program": "Engineer — Computer Science",
+      "year": "2018–2023"
+    }
+  ],
+
+  "awards": [
+    {
+      "name": "DevFest Hackathon Winner",
+      "org": "LG Electronics | GDG",
+      "note": "Computer vision-based parental control"
+    }
+  ],
+
+  "community": [
+    { "org": "ESI Scientific Club", "role": "Lead Developer & VP" },
+    { "org": "Microsoft Learn Student Ambassadors", "role": "Ambassador" }
+  ],
+
+  "contact": {
+    "email": "ia_nasri@esi.dz",
+    "availability": "Open to frontend/3D dashboard roles",
+    "calendar": null
+  }
 }
