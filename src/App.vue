@@ -1,15 +1,22 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
 import { useContent } from "@/composables/useContent";
 import Hero from "./components/Hero.vue";
 import Highlights from "./components/Highlights.vue";
+import NavBar from "./components/NavBar.vue";
 
 const { site, highlights } = useContent();
 </script>
 
 <template>
-  <RouterView />
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 bg-neutral-900 text-white px-3 py-2 rounded">
+    Skip to content
+  </a>
+  <NavBar />
+   <div id="main">
+    <RouterView />
+  </div>
+  <SiteFooter />
 </template>
 
 
