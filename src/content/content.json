@@ -162,5 +162,45 @@
     "email": "ia_nasri@esi.dz",
     "availability": "Open to frontend/3D dashboard roles",
     "calendar": null
+  },
+  "about": {
+  "bio": "I build data-driven UIs and 3D experiences for buildings and operations using Vue, TypeScript, and Three.js.",
+  "photo": "/media/profile.jpg",
+  "highlights": [
+    "Winner: DevFest Hackathon",
+    "3D smart-building supervision at SpinalCom",
+    "Budget/KPI dashboards for 300+ users (Bank of Algeria)"
+  ]
+},
+  "projects": [
+  {
+    "id": "manareh",
+    "name": "Manareh — School Management",
+    "summary": "Offline-first desktop app with cloud sync.",
+    "category": "web",
+    "tags": ["Web"],
+    "tech": ["Electron","Node.js","SQLite"],
+    "media": [{ "type": "image", "src": "media/manareh-1.png" }]
+  },
+  {
+    "id": "spinal-3d",
+    "name": "Smart Building 3D Supervision",
+    "summary": "3D BIM with live equipment status.",
+    "category": "web",
+    "tags": ["Web","3D"],
+    "tech": ["Vue","TypeScript","Three.js"],
+    "media": [{ "type": "image", "src": "media/spinal-3d.png" }]
+  },
+  {
+    "id": "real-estate",
+    "name": "Real-Estate Platform",
+    "summary": "Responsive search with dynamic filters & i18n.",
+    "category": "web",
+    "tags": ["Web"],
+    "tech": ["React","TypeScript","Django"],
+    "media": [{ "type": "image", "src": "media/real-estate.png" }]
   }
+]
+
+  
 }
