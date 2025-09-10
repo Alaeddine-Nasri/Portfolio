@@ -2,6 +2,9 @@
 import Hero from '@/components/Hero.vue'
 import Highlights from '@/components/Highlights.vue'
 import Projects from '@/components/Projects.vue'
+import ExperienceTimeline from '@/components/ExperienceTimeline.vue'
+import SkillsMap from '@/components/SkillsMap.vue'
+import EducationAwards from '@/components/EducationAwards.vue'
 </script>
 
 <template>
@@ -9,5 +12,8 @@ import Projects from '@/components/Projects.vue'
     <Hero />
     <Highlights />
     <Projects />
+    <ExperienceTimeline />
+    <SkillsMap />
+    <EducationAwards />
   </main>
 </template>
