@@ -136,7 +136,10 @@
       "school": "Université Gustave Eiffel",
       "program": "Master — Systems & Services for IoT",
       "year": "2023–2024",
-      "bullets": ["Cloud-native, microservices, distributed systems", "Project leadership, agile planning"]
+      "bullets": [
+        "Cloud-native, microservices, distributed systems",
+        "Project leadership, agile planning"
+      ]
     },
     {
       "school": "ESI (École Nationale Supérieure d’Informatique)",
@@ -164,43 +167,144 @@
     "calendar": null
   },
   "about": {
-  "bio": "I build data-driven UIs and 3D experiences for buildings and operations using Vue, TypeScript, and Three.js.",
-  "photo": "/media/profile.jpg",
-  "highlights": [
-    "Winner: DevFest Hackathon",
-    "3D smart-building supervision at SpinalCom",
-    "Budget/KPI dashboards for 300+ users (Bank of Algeria)"
-  ]
-},
-  "projects": [
-  {
-    "id": "manareh",
-    "name": "Manareh — School Management",
-    "summary": "Offline-first desktop app with cloud sync.",
-    "category": "web",
-    "tags": ["Web"],
-    "tech": ["Electron","Node.js","SQLite"],
-    "media": [{ "type": "image", "src": "media/manareh-1.png" }]
+    "hero": {
+      "title": "About Me.",
+      "leftName": "Ala Eddine Nasri",
+      "rightName": "Ala Eddine Nasri"
+    },
+    "sections": [
+      {
+        "id": "engineering",
+        "title": "Ingénierie",
+        "labels": ["Architectures", "Algorithmics", "Systems", "Data Viz", "3D"],
+        "short": "Architectures logicielles, algo et systèmes.",
+        "description": "Conception d’architectures web/temps réel, modélisation de données, algorithmes et intégration 3D.",
+        "cover": "media/about/engineering.jpeg",
+        "card": {
+          "bgColor": "#ffffff",
+          "textColor": "#0f172a",
+          "image": "media/about/engineering.jpeg"
+        }
+      },
+      {
+        "id": "experience",
+        "title": "Experiences",
+        "labels": ["+ 3 years"],
+        "short": "Expériences pro / side-projects.",
+        "description": "UIs de supervision, 3D temps réel et plateformes data.",
+        "cover": "media/about/experiences.jpg",
+        "card": {
+          "bgColor": "#ffffff",
+          "textColor": "#0f172a",
+          "image": "media/about/experiences.jpg"
+        }
+      },
+      {
+        "id": "education",
+        "title": "Formations",
+        "labels": ["Masters", "Engineer", "IoT"],
+        "short": "Parcours académique.",
+        "description": "Ingénieur (ESI) et Master (UGE) orienté systèmes distribués et IoT.",
+        "cover": "media/about/education.jpg",
+        "card": {
+          "bgColor": "#ffffff",
+          "textColor": "#0f172a",
+          "image": "media/about/education.jpg"
+        }
+      },
+      {
+        "id": "awards",
+        "title": "Awards",
+        "labels": ["DevFest Winner"],
+        "short": "Reconnaissances.",
+        "description": "Lauréat d’un hackathon LG | GDG.",
+        "cover": "media/about/awards.jpg",
+        "card": {
+          "bgColor": "#ffffff",
+          "textColor": "#0f172a",
+          "image": "media/about/awards.jpg"
+        }
+      },
+      {
+        "id": "skills",
+        "title": "Skills",
+        "labels": ["Vue", "TypeScript", "Three.js", "React", "Node.js", "Django"],
+        "short": "Stack de prédilection.",
+        "description": "Front (Vue/TS), 3D (Three.js), back (Node/Django), CI/CD.",
+        "cover": "media/about/skills.jpeg",
+        "card": {
+          "bgColor": "#ffffff",
+          "textColor": "#0f172a",
+          "image": "media/about/skills.jpeg"
+        }
+      }
+    ]
   },
-  {
-    "id": "spinal-3d",
-    "name": "Smart Building 3D Supervision",
-    "summary": "3D BIM with live equipment status.",
-    "category": "web",
-    "tags": ["Web","3D"],
-    "tech": ["Vue","TypeScript","Three.js"],
-    "media": [{ "type": "image", "src": "media/spinal-3d.png" }]
-  },
-  {
-    "id": "real-estate",
-    "name": "Real-Estate Platform",
-    "summary": "Responsive search with dynamic filters & i18n.",
-    "category": "web",
-    "tags": ["Web"],
-    "tech": ["React","TypeScript","Django"],
-    "media": [{ "type": "image", "src": "media/real-estate.png" }]
-  }
-]
 
-  
+  "projects": [
+    {
+      "id": "spinal-3d",
+      "name": "Smart Building 3D Supervision",
+      "summary": "3D BIM with live equipment status.",
+      "category": "web",
+      "tags": ["Web", "3D"],
+      "tech": ["Vue", "TypeScript", "Three.js"],
+      "media": [{ "type": "model", "src": "media/projects/SpinalCom/models/scene.gltf" }]
+    },
+    {
+      "id": "central-budget",
+      "name": "Smart Building 3D Supervision",
+      "summary": "Développement et déploiement d’un système d’information de gestion budgétaire à l’échelle de l’institution, conçu pour plus de 300 utilisateurs internes.",
+      "category": "web",
+      "tags": ["Web"],
+      "tech": ["Java", "TypeScript", "Three.js"],
+      "media": [
+        { "type": "video", "src": "media/projects/CentralBudget/demo.mp4" },
+        { "type": "image", "src": "media/projects/CentralBudget/media0.png" },
+        { "type": "image", "src": "media/projects/CentralBudget/media1.png" },
+        { "type": "image", "src": "media/projects/CentralBudget/media2.png" },
+        { "type": "image", "src": "media/projects/CentralBudget/media3.png" },
+        { "type": "image", "src": "media/projects/CentralBudget/media4.png" },
+        { "type": "image", "src": "media/projects/CentralBudget/media5.png" },
+        { "type": "image", "src": "media/projects/CentralBudget/media6.png" },
+        { "type": "image", "src": "media/projects/CentralBudget/media7.png" }
+      ]
+    },
+    {
+      "id": "aures-pedia",
+      "name": "Aures Pedia",
+      "summary": "Évaluation des performances : identification des axes d'amélioration et mise en œuvre d’évolutions pour répondre aux besoins métier changeants.",
+      "category": "web",
+      "tags": ["Web"],
+      "tech": ["React", "TypeScript", "Django"],
+      "media": [{ "type": "image", "src": "media/projects/AuresPedia/AuresPediaBg.png" }]
+    },
+    {
+      "id": "manareh",
+      "name": "Manareh — School Management",
+      "summary": "Offline-first desktop app with cloud sync.",
+      "category": "web",
+      "tags": ["Web"],
+      "tech": ["Electron", "Node.js", "SQLite"],
+      "media": [{ "type": "image", "src": "media/manareh-1.png" }]
+    },
+    {
+      "id": "cse",
+      "name": "CSE Website",
+      "summary": "3D BIM with live equipment status.",
+      "category": "web",
+      "tags": ["Web", "3D"],
+      "tech": ["Vue", "TypeScript", "Three.js"],
+      "media": [{ "type": "video", "src": "media/projects/Cse/CseBg.mp4" }]
+    },
+    {
+      "id": "lamacta",
+      "name": "Lamacta Platform",
+      "summary": "Responsive search with dynamic filters & i18n.",
+      "category": "web",
+      "tags": ["Web"],
+      "tech": ["React", "TypeScript", "Django"],
+      "media": [{ "type": "image", "src": "media/projects/Lamacta/LamactaBg.png" }]
+    }
+  ]
 }

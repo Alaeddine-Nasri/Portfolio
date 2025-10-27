@@ -1,4 +1,5 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap');
 
 :root {
   --vt-c-white: #ffffff;
@@ -39,7 +40,11 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-background: var(--vt-c-black);
+    /* solid fallback (optional) */
+    --color-background-solid: #406e6e;
+
+    /* your gradient: 20deg from #406e6e to #7a1506 */
+    --color-background: linear-gradient(184deg, #1a2944 16%, #8759bd 93%);
     --color-background-soft: var(--vt-c-black-soft);
     --color-background-mute: var(--vt-c-black-mute);
 
@@ -68,6 +73,8 @@ body {
     background-color 0.5s;
   line-height: 1.6;
   font-family:
+    'Space Grotesk',
+    'Manrope',
     Inter,
     -apple-system,
     BlinkMacSystemFont,

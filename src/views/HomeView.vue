@@ -10,7 +10,11 @@ import SiteFooter from '@/components/SiteFooter.vue'
 </script>
 
 <template>
-  <main id="top" class="min-h-screen bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100">
+  <main
+    id="top"
+    class="min-h-screen bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100"
+    style="background: transparent !important"
+  >
     <Hero />
     <Highlights />
     <Projects />
@@ -18,6 +22,5 @@ import SiteFooter from '@/components/SiteFooter.vue'
     <SkillsMap />
     <EducationAwards />
     <ContactSection />
-    <SiteFooter />
   </main>
 </template>

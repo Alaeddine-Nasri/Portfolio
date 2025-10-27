@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import { useContent } from '@/composables/useContent'
-import Hero from './components/Hero.vue'
-import Highlights from './components/Highlights.vue'
 import NavBar from './components/NavBar.vue'
 import SiteFooter from './components/SiteFooter.vue'
 
