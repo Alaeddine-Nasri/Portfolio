@@ -64,7 +64,7 @@ const previewing = computed(() => !!hoveredId.value) // ← true only while hove
             class="absolute left-[0%] bottom-[0%] w-[45%] h-[58%] max-w-[680px] min-w-[320px]"
             style="background-color: transparent"
           >
-            <AboutFeatureCard
+            <!-- <AboutFeatureCard
               :title="cardTitle"
               :description="cardDesc"
               :labels="cardLabels"
@@ -73,7 +73,7 @@ const previewing = computed(() => !!hoveredId.value) // ← true only while hove
               :image="cardImage"
               :previewing="previewing"
               class="h-full"
-            />
+            /> -->
           </div>
         </div>
 

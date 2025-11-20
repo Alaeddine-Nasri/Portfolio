@@ -32,7 +32,7 @@ function heightForIndex(idx: number): 'tall' | 'short' {
 
 <template>
   <main
-    class="min-h-screen bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100"
+    class="min-h-screen text-neutral-900 dark:text-neutral-100"
     style="
       align-items: center;
       display: flex;

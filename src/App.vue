@@ -2,7 +2,7 @@
 import { RouterLink, RouterView } from 'vue-router'
 import { useContent } from '@/composables/useContent'
 import NavBar from './components/NavBar.vue'
-import SiteFooter from './components/SiteFooter.vue'
+import ThreeScene from './components/ThreeScene.vue'
 
 const { site, highlights } = useContent()
 </script>
@@ -15,11 +15,12 @@ const { site, highlights } = useContent()
     Skip to content
   </a>
   <div style="min-height: 100vh; width: 100%; display: flex; flex-direction: column">
+    <ThreeScene />
+
     <NavBar />
     <div id="main">
       <RouterView />
     </div>
-    <SiteFooter />
   </div>
 </template>
 

@@ -3,3 +3,39 @@
 #app {
   font-weight: normal;
 }
+@font-face {
+  font-family: 'Josefin Sans';
+  src: url('/fonts/Josefin_Sans/JosefinSans-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 700; /* variable range */
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Josefin Sans';
+  src: url('/fonts/Josefin_Sans/JosefinSans-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'OrganettoExp';
+  src: url('/fonts/Organetto/organetto-expbold.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'OrganettoBold';
+  src: url('/fonts/Organetto/organetto-bold.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Changa';
+  src: url('/fonts/Changa/Changa-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900; /* variable range */
+  font-style: normal;
+  font-display: swap;
+}
