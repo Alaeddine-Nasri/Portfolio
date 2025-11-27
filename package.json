@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "three": "^0.180.0",
+    "three-stdlib": "^2.36.1",
     "vue": "^3.5.18",
     "vue-router": "^4.5.1"
   },
