@@ -5,25 +5,30 @@ import CanvasModel from '@/components/CanvasModel.vue'
 
 const props = defineProps<{ project: Project; height: 'tall' | 'short' }>()
 
+const emit = defineEmits<{
+  (e: 'open', payload: { project: Project; el: HTMLElement }): void
+}>()
+
+const onClick = (e: MouseEvent) => {
+  emit('open', {
+    project: props.project,
+    el: e.currentTarget as HTMLElement,
+  })
+}
+
 onMounted(() => {
-  console.log('height:', props.height) // ✅ works
+  console.log('height:', props.height)
 })
 </script>
 
-<!-- ProjectMasonryCard.vue -->
 <template>
-  <RouterLink
-    :to="`/projects/${project.id}`"
+  <!-- changed: div instead of RouterLink, we emit 'open' -->
+  <div
     :class="['group card', height === 'tall' ? 'md:row-span-3' : 'md:row-span-2']"
+    @click="onClick"
   >
     <!-- Media -->
-    <div
-      :class="[
-        'w-full',
-        height === 'tall' ? 'h-96' : 'h-64', // mobile exact heights
-        'md:h-full', // fill the stretched grid area on md+
-      ]"
-    >
+    <div :class="['w-full', height === 'tall' ? 'h-96' : 'h-64', 'md:h-full']">
       <img
         v-if="project.media?.[0]?.type === 'image'"
         :src="project.media[0].src"
@@ -50,7 +55,7 @@ onMounted(() => {
       <div v-else class="h-full w-full grid place-items-center text-neutral-500">No preview</div>
     </div>
 
-    <!-- Bottom reveal ... unchanged -->
+    <!-- Bottom reveal stays same -->
     <div
       class="pointer-events-none absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"
     >
@@ -67,14 +72,14 @@ onMounted(() => {
         </div>
       </div>
     </div>
-  </RouterLink>
+  </div>
 </template>
 
 <style scoped>
 @reference "../assets/base.css";
 
 .card {
-  @apply relative block overflow-hidden rounded-3xl border border-neutral-800
+  @apply relative block overflow-hidden rounded-xl
          bg-neutral-900/30 hover:shadow-2xl hover:shadow-black/40 transition;
 }
 </style>

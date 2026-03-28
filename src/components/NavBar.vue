@@ -13,12 +13,19 @@ interface UseContentReturn {
 const { site } = useContent() as UseContentReturn
 const route = useRoute()
 const open = ref(false)
+const longer = ref(false)
 
-const links = [
-  { label: 'Home', to: { name: 'home' } },
+const linksOld = [
+  { label: 'HOME', to: { name: 'home' } },
   { label: 'Projects', to: { name: 'projects' } },
   { label: 'About', to: { name: 'about' } },
   { label: 'Contact', to: { name: 'contact' } },
+]
+const links = [
+  { label: 'HOM<span class="wide">E</span>', to: { name: 'home' } },
+  { label: 'PROJ<span class="wide">E</span>CTS', to: { name: 'projects' } },
+  { label: 'ABO<span class="wide">U</span>T', to: { name: 'about' } },
+  { label: 'CON<span class="wide">T</span>ACT', to: { name: 'contact' } },
 ]
 
 const isActive = (toName: string) => route.name === toName
@@ -31,26 +38,70 @@ const baseHref = import.meta.env.BASE_URL || '/'
     class="fixed top-0 left-0 w-full z-50 pointer-events-none"
     style="background: transparent; margin: 0 !important; width: 100%"
   >
-    <!-- top row: name + menu icon -->
-    <div class="flex items-center justify-between px-6 pt-4" style="pointer-events: auto">
-      <!-- big name on the left -->
-      <a :href="baseHref" class="brand-name" style="font-size: 1.6rem">
-        <!-- {{ site?.name || 'Portfolio' }} -->
-        Aladdin
-      </a>
+    <div
+      class="flex items-center justify-between px-6 pt-4"
+      style="pointer-events: auto; display: flex; align-items: start"
+    >
+      <!-- brand -->
+      <a :href="baseHref" class="brand-name" style="font-size: 1.6rem"> Aladdin </a>
+      <!-- <div
+        style="display: flex; flex-direction: row; align-items: start"
+        @mouseenter="longer = true"
+        @mouseleave="longer = false"
+      >
+        <div style="height: 20px; width: 4px; background-color: aliceblue"></div>
+        <div
+          style="
+            height: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: width 0.5s ease;
+          "
+          :style="{ width: longer ? '25px' : '8px' }"
+        >
+          <div style="width: 100%; height: 3px; background-color: aliceblue"></div>
+          <div style="width: 100%; height: 3px; background-color: aliceblue"></div>
+          <div style="width: 100%; height: 3px; background-color: aliceblue"></div>
+        </div>
+      </div> -->
+      <!-- DESKTOP MENU (STACKED) -->
+      <div
+        class="hidden md:flex flex-col items-end gap-2 pointer-events-auto"
+        style="margin-top: -10px"
+      >
+        <!-- <RouterLink
+          v-for="l in links"
+          :key="l.label"
+          :to="l.to"
+          class="menu-item text-right"
+          :class="isActive(l.to.name as string) ? 'active-link' : 'inactive-link'"
+          style="font-size: 1.3rem"
+        >
+          {{ l.label }}
+        </RouterLink> -->
+        <RouterLink
+          v-for="l in links"
+          :key="l.label"
+          :to="l.to"
+          class="menu-item"
+          v-html="l.label"
+          :class="isActive(l.to.name) ? 'active-link' : 'inactive-link'"
+        />
+      </div>
 
-      <!-- menu toggle icon (always visible) -->
-      <button class="px-3 py-1 text-lg" @click="open = !open" aria-label="Toggle menu">
+      <!-- MOBILE BURGER (only small screens) -->
+      <button class="px-3 py-1 text-lg md:hidden" @click="open = !open" aria-label="Toggle menu">
         <span v-if="!open">☰</span>
         <span v-else>✕</span>
       </button>
     </div>
 
-    <!-- dropdown menu on the right, links stacked vertically -->
+    <!-- MOBILE DROPDOWN -->
     <transition name="fade">
       <div
         v-if="open"
-        class="absolute right-6 mt-1 flex flex-col items-end gap-2 px-4"
+        class="absolute right-6 mt-1 flex flex-col items-end gap-2 px-4 md:hidden"
         style="pointer-events: auto; margin-top: -45px; margin-right: 20px"
       >
         <RouterLink
@@ -58,27 +109,20 @@ const baseHref = import.meta.env.BASE_URL || '/'
           :key="l.label"
           :to="l.to"
           @click="open = false"
-          class="menu-item px-3 py-1.5 rounded-lg text-right"
+          class="menu-item px-3 py-1.5 text-right"
+          :class="isActive(l.to.name as string) ? 'active-link' : 'inactive-link'"
           style="font-size: 1.3rem"
-          :class="
-            isActive(l.to.name as string)
-              ? 'font-semibold underline'
-              : 'opacity-80 hover:opacity-100'
-          "
         >
           {{ l.label }}
         </RouterLink>
-
-        <!-- <div class="pt-1">
-          <DarkToggle />
-        </div> -->
       </div>
     </transition>
   </nav>
 </template>
 
 <style scoped>
-/* simple fade for the dropdown */
+/* fade transition stays the same */
+/* fade transition */
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s ease;
@@ -87,50 +131,60 @@ const baseHref = import.meta.env.BASE_URL || '/'
 .fade-leave-to {
   opacity: 0;
 }
-/* brand name using the variable font axis */
+
+/* brand name */
 .brand-name {
   font-family: 'Changa', system-ui, sans-serif;
-
-  /* base look */
-  font-variation-settings: 'wght' 400; /* regular-ish */
+  font-variation-settings: 'wght' 400;
   letter-spacing: 0.02em;
-
-  display: inline-block; /* so transform works */
-  transform-origin: left center;
-
-  /* smooth animation */
   transition:
     font-variation-settings 0.25s ease,
     letter-spacing 0.25s ease,
     transform 0.25s ease;
 }
-
 .brand-name:hover {
-  /* get bolder */
   font-variation-settings: 'wght' 500;
-  /* fake width expansion */
   letter-spacing: 0.06em;
   transform: scaleX(1.12);
 }
+
+/* nav items */
 .menu-item {
-  font-family: 'Changa', system-ui, sans-serif;
-
-  /* base */
+  font-family: 'CindieD', system-ui, sans-serif;
   font-variation-settings: 'wght' 400;
-  letter-spacing: 0.01em;
-  display: inline-block;
-  transform-origin: left center;
-
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
   transition:
     font-variation-settings 0.25s ease,
     letter-spacing 0.25s ease,
     transform 0.25s ease,
-    opacity 0.2s ease;
+    opacity 0.2s ease,
+    color 0.2s ease;
+}
+:deep(.wide) {
+  display: inline-block;
+  transform: scaleX(2); /* make this bigger for more width */
+  transform-origin: center;
+  font-weight: 500 !important;
+  letter-spacing: 0.2em;
+  margin-left: 8px;
 }
 
-.menu-item:hover {
-  font-variation-settings: 'wght' 500; /* thicker */
-  letter-spacing: 0.06em; /* more spaced */
-  transform: scaleX(1); /* widen text */
+/* inactive */
+.inactive-link {
+  opacity: 0.8;
+  color: #e5e7eb; /* light gray */
+}
+.inactive-link:hover {
+  opacity: 1;
+  color: #7c3aed; /* purple hover */
+}
+
+/* active */
+.active-link {
+  opacity: 1;
+  color: #7c3aed; /* purple */
+  font-variation-settings: 'wght' 500;
 }
 </style>

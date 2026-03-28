@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { getProjects, type Project } from '@/composables/useContent'
 import ProjectsFilterBar from '@/components/ProjectsFilterBar.vue'
 import ProjectMasonryCard from '@/components/ProjectMasonryCard.vue'
+import { startProjectTransition } from '@/composables/useProjectTransition'
 
 const all = getProjects()
 const filter = ref<'all' | 'web' | 'mobile' | 'open-source' | 'design'>('all')
+const router = useRouter()
 
 const filtered = computed<Project[]>(() => {
   if (filter.value === 'all') return all
@@ -16,17 +19,32 @@ const filtered = computed<Project[]>(() => {
   )
 })
 
-/** Alternate heights per row:
- * Row 0: [tall, short]
- * Row 1: [short, tall]
- * Row 2: [tall, short] ... etc
- */
 function heightForIndex(idx: number): 'tall' | 'short' {
   const row = Math.floor(idx / 2)
   const leftIsTall = row % 2 === 0
   const isLeft = idx % 2 === 0
-  console.log('isLeft:', isLeft, 'leftIsTall:', leftIsTall)
   return (isLeft ? leftIsTall : !leftIsTall) ? 'tall' : 'short'
+}
+
+function openProject(payload: { project: Project; el: HTMLElement }) {
+  const { project, el } = payload
+
+  // only do fancy animation for image cards
+  const media = project.media?.[0]
+  if (!media || media.type !== 'image') {
+    router.push({ name: 'project', params: { id: project.id } })
+    return
+  }
+
+  const rect = el.getBoundingClientRect()
+
+  startProjectTransition({
+    id: project.id,
+    rect,
+    mediaSrc: media.src,
+  })
+
+  router.push({ name: 'project', params: { id: project.id } })
 }
 </script>
 
@@ -64,6 +82,7 @@ function heightForIndex(idx: number): 'tall' | 'short' {
           :key="p.id"
           :project="p"
           :height="heightForIndex(i)"
+          @open="openProject"
         />
       </div>
     </section>

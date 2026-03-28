@@ -1,27 +1,41 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch, nextTick } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { getProjectById } from '@/composables/useContent'
-import CanvasModel from '@/components/CanvasModel.vue' // ⬅️ for 3D models
+import CanvasModel from '@/components/CanvasModel.vue'
+import { useProjectTransition } from '@/composables/useProjectTransition'
 
 const route = useRoute()
 const router = useRouter()
+const transitionState = useProjectTransition()
 
 const project = computed(() => getProjectById(route.params.id as string))
-// ✅ define the base URL here
 const base = import.meta.env.BASE_URL
 
-onMounted(() => {
-  console.log('projectMedia', project)
+const heroReady = ref(false) // we'll show hero after animation
+const heroEl = ref<HTMLElement | null>(null)
 
-  if (!project.value) router.replace('/')
-  else document.title = `${project.value.name} • Portfolio`
+onMounted(async () => {
+  if (!project.value) {
+    router.replace('/')
+    return
+  }
+  document.title = `${project.value.name} • Portfolio`
+
+  // run shared-element-like animation if we have state and matching project
+  if (transitionState.value && transitionState.value.id === project.value.id) {
+    await nextTick()
+    runHeroTransition()
+  } else {
+    heroReady.value = true
+  }
 })
+
 watch(project, (p) => {
   if (p) document.title = `${p.name} • Portfolio`
 })
 
-// lightbox (kept, works for images inside the hero)
+// lightbox stays the same ...
 const lightboxSrc = ref<string | null>(null)
 const lightboxAlt = ref<string>('')
 function openLightbox(src: string, alt?: string) {
@@ -34,6 +48,54 @@ function closeLightbox() {
   lightboxAlt.value = ''
   document.body.style.overflow = ''
 }
+
+function runHeroTransition() {
+  const state = transitionState.value
+  const hero = heroEl.value
+  const p = project.value
+  if (!state || !hero || !p || !p.media?.[0] || p.media[0].type !== 'image') {
+    heroReady.value = true
+    transitionState.value = null
+    return
+  }
+
+  const from = state.rect
+  const to = hero.getBoundingClientRect()
+
+  // create ghost element
+  const ghost = document.createElement('div')
+  ghost.style.position = 'fixed'
+  ghost.style.left = from.left + 'px'
+  ghost.style.top = from.top + 'px'
+  ghost.style.width = from.width + 'px'
+  ghost.style.height = from.height + 'px'
+  ghost.style.borderRadius = '16px'
+  ghost.style.overflow = 'hidden'
+  ghost.style.zIndex = '999'
+  ghost.style.backgroundImage = `url(${base + state.mediaSrc})`
+  ghost.style.backgroundSize = 'cover'
+  ghost.style.backgroundPosition = 'center'
+  ghost.style.boxShadow = '0 20px 40px rgba(0,0,0,0.5)'
+  ghost.style.transition = 'all 0.45s cubic-bezier(0.22, 0.61, 0.36, 1)'
+
+  document.body.appendChild(ghost)
+
+  // animate to hero rect
+  requestAnimationFrame(() => {
+    ghost.style.left = to.left + 'px'
+    ghost.style.top = to.top + 'px'
+    ghost.style.width = to.width + 'px'
+    ghost.style.height = to.height + 'px'
+    ghost.style.borderRadius = '20px'
+  })
+
+  // cleanup after animation
+  setTimeout(() => {
+    ghost.remove()
+    heroReady.value = true
+    transitionState.value = null
+  }, 500)
+}
 </script>
 
 <template>
@@ -41,43 +103,45 @@ function closeLightbox() {
     <!-- HERO MEDIA CARD -->
     <section class="flex justify-center">
       <div
+        ref="heroEl"
         class="detail-hero w-full md:w-4/5 h-[70vh] mt-0 overflow-hidden relative rounded-b-[20px]"
       >
-        <!-- media chooser -->
-        <template v-if="project?.media?.[0]">
-          <template v-if="project.media[0].type === 'video'">
-            <video
-              :src="base + project.media[0].src"
-              :alt="project.media[0].alt || project.name"
-              class="absolute inset-0 w-full h-full object-cover"
-              autoplay
-              muted
-              loop
-              playsinline
-              preload="metadata"
-            />
+        <!-- Only show media once the transition is done (or skipped) -->
+        <div v-if="heroReady" class="absolute inset-0">
+          <template v-if="project?.media?.[0]">
+            <template v-if="project.media[0].type === 'video'">
+              <video
+                :src="base + project.media[0].src"
+                :alt="project.media[0].alt || project.name"
+                class="absolute inset-0 w-full h-full object-cover"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+              />
+            </template>
+
+            <template v-else-if="project.media[0].type === 'model'">
+              <CanvasModel
+                :src="base + project.media[0].src"
+                class="absolute inset-0 w-full h-full"
+              />
+            </template>
+
+            <template v-else>
+              <img
+                :src="base + project.media[0].src"
+                :alt="project.media[0].alt || project?.name"
+                class="absolute inset-0 w-full h-full object-cover cursor-zoom-in"
+                @click="openLightbox(project!.media![0].src, project!.media![0].alt)"
+              />
+            </template>
           </template>
 
-          <template v-else-if="project.media[0].type === 'model'">
-            <CanvasModel
-              :src="base + project.media[0].src"
-              class="absolute inset-0 w-full h-full"
-            />
-          </template>
-
-          <template v-else>
-            <img
-              :src="base + project.media[0].src"
-              :alt="project.media[0].alt || project?.name"
-              class="absolute inset-0 w-full h-full object-cover cursor-zoom-in"
-              @click="openLightbox(project!.media![0].src, project!.media![0].alt)"
-            />
-          </template>
-        </template>
-
-        <!-- fallback if no media -->
-        <div v-else class="grid place-items-center absolute inset-0 text-neutral-500">
-          No preview available
+          <div v-else class="grid place-items-center absolute inset-0 text-neutral-500">
+            No preview available
+          </div>
         </div>
       </div>
     </section>

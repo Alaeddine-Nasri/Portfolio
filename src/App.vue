@@ -21,6 +21,9 @@ const { site, highlights } = useContent()
     <div id="main">
       <RouterView />
     </div>
+    <footer class="footer">
+      © {{ new Date().getFullYear() }} — All rights reserved to <strong>Ala Eddine Nasri</strong>
+    </footer>
   </div>
 </template>
 
@@ -84,6 +87,18 @@ nav a:first-of-type {
 
     padding: 1rem 0;
     margin-top: 1rem;
+  }
+  .footer {
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+    font-size: 0.75rem; /* very small text */
+    opacity: 0.6;
+    padding: 1rem 0;
+    width: 100%;
+  }
+  .footer strong {
+    font-weight: 600;
   }
 }
 </style>

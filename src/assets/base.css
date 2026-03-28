@@ -36,6 +36,12 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: 'CindieD';
+  src: url('/fonts/Cindie/CindieMono-D.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 :root {
   --vt-c-white: #ffffff;
